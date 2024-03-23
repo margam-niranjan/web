@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Your Taco</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Design Your Taco</h1>
+        <form action="/submit-taco" method="post">
+            <div class="form-group">
+                <label for="tacoName">Taco Name:</label>
+                <input type="text" id="tacoName" name="tacoName" required>
+            </div>
+            <div class="form-group">
+                <label>Select Taco Type:</label><br>
+                <!-- Radio button group for selecting taco type -->
+                <div th:each="type : ${types}">
+                    <input type="radio" name="tacoType" th:id="${type}" th:value="${type}" required>
+                    <label th:for="${type}" th:text="${type}"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ingredients">Select Ingredients:</label>
+                <select multiple id="ingredients" name="ingredients" required>
+                    <!-- Iterate over ingredients using Thymeleaf -->
+                    <option th:each="ingredient : ${ingredients}"
+                            th:value="${ingredient.id}"
+                            th:text="${ingredient.name}">
+                    </option>
+                </select>
+            </div>
+            <button type="submit">Order Now</button>
+        </form>
+    </div>
+</body>
+</html>
+	

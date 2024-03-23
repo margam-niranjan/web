@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Your Taco</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Design Your Taco</h1>
+        <form action="/submit-taco" method="post">
+            <div class="form-group">
+                <label for="tacoName">Taco Name:</label>
+                <input type="text" class="form-control" id="tacoName" name="tacoName">
+            </div>
+            <div class="form-group">
+                <label for="ingredients">Select Ingredients:</label>
+                <select multiple class="form-control" id="ingredients" name="ingredients">
+                    <!-- Iterate over ingredients using Thymeleaf -->
+                    <option th:each="ingredient : ${ingredients}"
+                            th:value="${ingredient.id}"
+                            th:text="${ingredient.name}">
+                    </option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Order Now</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS (optional, for dropdowns and other features) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

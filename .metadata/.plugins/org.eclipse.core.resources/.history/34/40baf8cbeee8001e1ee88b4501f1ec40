@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Ferrari</title>
+	<link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+	<h1>Ferrari</h1>
+	<img th:src="@{/images/logo.jpg}" />
+	<form method="POST" th:object="${tacos}">
+		<div class="grid">
+			<div class="ingredients-group" id="wraps">
+				<h3>Designate Your Wraps.</h3>
+				<div th:each="ingredient : ${wrap}">
+					<input th:field="*ingredients" th:type="checkbox" th:value=""
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+
+</html>

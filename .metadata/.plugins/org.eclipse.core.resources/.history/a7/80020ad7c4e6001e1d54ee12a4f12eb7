@@ -1,0 +1,33 @@
+package com.tacos;
+
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Data;
+
+@Data
+public class TacoOrder {
+    private final String deliveryName;
+    private final String deliveryStreet;
+    private final String deliveryCity;
+    private final String deliveryState;
+    private final String deliveryZip;
+    private final String ccNumber;
+    private final String ccExpiration;
+    private final String ccCVV;
+    private List<Tacos> tacos = new ArrayList<>();
+
+    public TacoOrder(String deliveryName, String deliveryStreet, String deliveryCity, String deliveryState, String deliveryZip, String ccNumber, String ccExpiration, String ccCVV) {
+        this.deliveryName = deliveryName;
+        this.deliveryStreet = deliveryStreet;
+        this.deliveryCity = deliveryCity;
+        this.deliveryState = deliveryState;
+        this.deliveryZip = deliveryZip;
+        this.ccNumber = ccNumber;
+        this.ccExpiration = ccExpiration;
+        this.ccCVV = ccCVV;
+    }
+
+    public void addTacos(Tacos taco) {
+        this.tacos.add(taco);
+    }
+}

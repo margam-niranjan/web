@@ -1,0 +1,24 @@
+package com.tacos;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+
+public class TacoOrder {
+	@Getter @Setter private String deliveryName;
+	@Getter @Setter private String deliveryStreet;
+	@Getter @Setter private String deliveryCity;
+	@Getter @Setter private String deliveryState;
+	@Getter @Setter private String deliveryZip;
+	@Getter @Setter private String ccNumber;
+	@Getter @Setter private String ccExpiration;
+	@Getter @Setter private String ccCVV;
+	private List<Tacos> tacos= new ArrayList<>();
+	public void addTacos(Tacos taco) {
+		this.tacos.add(taco);
+	}
+}

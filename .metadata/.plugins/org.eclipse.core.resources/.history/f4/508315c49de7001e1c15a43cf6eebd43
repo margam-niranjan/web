@@ -1,0 +1,20 @@
+package com.tacos;
+
+import lombok.Getter;
+import lombok.Setter;
+
+public class Ingredients {
+    @Getter private final String id;
+    @Getter private final String name;
+    @Getter private final Type type;
+
+    public Ingredients(String id, String name, Type type) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+    }
+
+    public enum Type {
+        WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
+    }
+}

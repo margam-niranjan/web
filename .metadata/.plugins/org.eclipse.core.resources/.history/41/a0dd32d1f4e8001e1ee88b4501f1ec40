@@ -1,0 +1,64 @@
+package com.tacos.web;
+
+import com.tacos.Ingredients;
+import com.tacos.TacoOrder;
+import com.tacos.Tacos;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Controller
+@RequestMapping("/design")
+@SessionAttributes("tacoOrder")
+public class DesignTacoController {
+
+    @ModelAttribute("ingredients")
+    public <Type> List<Ingredients> ingredients() {
+        return Arrays.asList(
+                new Ingredients("FLTO", "Flour Tortilla", Ingredients.Type.WRAP),
+                new Ingredients("COTO", "Corn Tortilla", Ingredients.Type.WRAP),
+                new Ingredients("GRBF", "Ground Beef", Ingredients.Type.PROTEIN),
+                new Ingredients("CARN", "Carnitas", Ingredients.Type.PROTEIN),
+                new Ingredients("TMTO", "Diced Tomatoes", Ingredients.Type.VEGGIES),
+                new Ingredients("LETC", "Lettuce", Ingredients.Type.VEGGIES),
+                new Ingredients("CHED", "Cheddar", Ingredients.Type.CHEESE),
+                new Ingredients("JACK", "Monterrey Jack", Ingredients.Type.CHEESE),
+                new Ingredients("SLSA", "Salsa", Ingredients.Type.SAUCE),
+                new Ingredients("SRCR", "Sour Cream", Ingredients.Type.SAUCE)
+        );
+        Ingredients.Type[] types = Ingredients.Type.values();
+        for(Type type : types) {
+        	model.addAttribute(type.toString().toLowerCase(),filterByType(ingredients,type));
+        }
+    }
+
+    @ModelAttribute("tacoOrder")
+    public TacoOrder tacoOrder() {
+        return new TacoOrder();
+    }
+
+    @ModelAttribute("tacos")
+    public Tacos tacos() {
+        return new Tacos();
+    }
+
+    @GetMapping
+    public String showDesignForm(Model model) {
+        return "design";
+    }
+
+    private List<Ingredients> filterByType(List<Ingredients> ingredients, Ingredients.Type type) {
+        return ingredients.stream()
+                .filter(ingredient -> ingredient.getType() == type)
+                .collect(Collectors.toList());
+    }
+}

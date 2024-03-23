@@ -1,0 +1,14 @@
+package com.tacos;
+import lombok.Data;
+import lombok.Setter;
+
+@Data
+public class Ingredients {
+	@Setter private String id;
+	@Setter private String name;
+	@Setter private Type type;
+	public enum Type {
+	WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
+	}
+	
+}
